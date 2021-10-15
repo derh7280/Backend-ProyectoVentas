@@ -1,7 +1,3 @@
-// hacer el import de express tradicional
-// const express = require('express');
-
-// hacer el nuevo import
 import Express from 'express';
 import Cors from 'cors';
 import dotenv from 'dotenv';
@@ -12,6 +8,7 @@ import jwks from 'jwks-rsa';
 import rutasProducto from './views/productos/rutas.js';
 import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
+import rutasFuncionario from './views/funcionarios/rutas.js'
 
 dotenv.config({ path: './.env' });
 
@@ -37,6 +34,7 @@ var jwtCheck = jwt({
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
+app.use(rutasFuncionario)
 
 const main = () => {
   return app.listen(process.env.PORT, () => {
