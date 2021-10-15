@@ -32,7 +32,7 @@ var jwtCheck = jwt({
   algorithms: ['RS256'],
 });
 
-app.use(jwtCheck);
+//app.use(jwtCheck);
 
 app.use(rutasProducto);
 app.use(rutasUsuario);
