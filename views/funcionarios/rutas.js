@@ -7,9 +7,9 @@ import {
   consultarFuncionario,
 } from '../../controllers/funcionarios/controller.js';
 
-const rutasFncionario = Express.Router();
+const rutasFuncionario = Express.Router();
 
-const genercCallback = (res) => (err, result) => {
+const generaCallback = (res) => (err, result) => {
   if (err) {
     res.status(500).send('Error consultando los funcionarios');
   } else {
@@ -17,26 +17,26 @@ const genercCallback = (res) => (err, result) => {
   }
 };
 
-rutasFncionario.route('/funcionarios').get((req, res) => {
+rutasFuncionario.route('/funcionarios').get((req, res) => {
   console.log('alguien hizo get en la ruta /funcionarios');
-  queryAllFuntionary(genercCallback(res));
+  queryAllFuntionary(generaCallback(res));
 });
 
-rutasFncionario.route('/funcionarios').post((req, res) => {
-  crearFuncionario(req.body, genercCallback(res));
+rutasFuncionario.route('/funcionarios').post((req, res) => {
+  crearFuncionario(req.body, generaCallback(res));
 });
 
-rutasFncionario.route('/funcionarios/:id').get((req, res) => {
+rutasFuncionario.route('/funcionarios/:id').get((req, res) => {
   console.log('alguien hizo get en la ruta /funcionarios');
-  consultarFuncionario(req.params.id, genercCallback(res));
+  consultarFuncionario(req.params.id, generaCallback(res));
 });
 
-rutasFncionario.route('/funcionarios/:id').patch((req, res) => {
-  editarFuncionario(req.params.id, req.body, genercCallback(res));
+rutasFuncionario.route('/funcionarios/:id').patch((req, res) => {
+  editarFuncionario(req.params.id, req.body, generaCallback(res));
 });
 
-rutasFncionario.route('/funcionarios/:id').delete((req, res) => {
-  eliminarFuncionario(req.params.id, genercCallback(res));
+rutasFuncionario.route('/funcionarios/:id').delete((req, res) => {
+  eliminarFuncionario(req.params.id, generaCallback(res));
 });
 
-export default rutasFncionario;
+export default rutasFuncionario;

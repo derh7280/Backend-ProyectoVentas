@@ -14,6 +14,8 @@ dotenv.config({ path: './.env' });
 
 const app = Express();
 
+const PORT = process.env.PORT || 5000;
+
 app.use(Express.json());
 app.use(Cors());
 
@@ -22,11 +24,11 @@ var jwtCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://dev-6w94aqz7.us.auth0.com/.well-known/jwks.json',
+    jwksUri: process.env.AO_JWKSURI,
   }),
-  audience: 'http://api-autenticacion-proyecto-ventas-mintic.com',
-  issuer: 'https://dev-6w94aqz7.us.auth0.com/',
-  algorithms: ['RS256'],
+  audience: process.env.AO_AUDIENCE,
+  issuer: process.env.AO_ISSUER,
+  algorithms:[process.env.AO_ALGORITHMS] ,
 });
 
 //app.use(jwtCheck);
@@ -37,7 +39,8 @@ app.use(rutasVenta);
 app.use(rutasFuncionario)
 
 const main = () => {
-  return app.listen(process.env.PORT, () => {
+  return app.listen(PORT, () => {
+    console.log(process.env.path)
     console.log(`Servidor conectado en el puerto ${process.env.PORT}`);
   });
 };

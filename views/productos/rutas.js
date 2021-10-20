@@ -9,7 +9,7 @@ import {
 
 const rutasProducto = Express.Router();
 
-const genercCallback = (res) => (err, result) => {
+const generaCallback = (res) => (err, result) => {
   if (err) {
     console.log('error', err);
     res.status(500).json({ error: err });
@@ -20,24 +20,24 @@ const genercCallback = (res) => (err, result) => {
 
 rutasProducto.route('/productos').get((req, res) => {
   console.log('alguien hizo get en la ruta /productos');
-  queryAllProducts(genercCallback(res));
+  queryAllProducts(generaCallback(res));
 });
 
 rutasProducto.route('/productos').post((req, res) => {
-  crearProducto(req.body, genercCallback(res));
+  crearProducto(req.body, generaCallback(res));
 });
 
 rutasProducto.route('/productos/:id').get((req, res) => {
   console.log('alguien hizo get en la ruta /productos');
-  consultarProducto(req.params.id, genercCallback(res));
+  consultarProducto(req.params.id, generaCallback(res));
 });
 
 rutasProducto.route('/productos/:id').patch((req, res) => {
-  editarProducto(req.params.id, req.body, genercCallback(res));
+  editarProducto(req.params.id, req.body, generaCallback(res));
 });
 
 rutasProducto.route('/productos/:id').delete((req, res) => {
-  eliminarProducto(req.params.id, genercCallback(res));
+  eliminarProducto(req.params.id, generaCallback(res));
 });
 
 export default rutasProducto;

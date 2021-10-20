@@ -9,7 +9,7 @@ import {
 
 const rutasVenta = Express.Router();
 
-const genercCallback = (res) => (err, result) => {
+const generaCallback = (res) => (err, result) => {
   if (err) {
     res.status(500).send('Error consultando los ventas');
   } else {
@@ -19,24 +19,24 @@ const genercCallback = (res) => (err, result) => {
 
 rutasVenta.route('/ventas').get((req, res) => {
   console.log('alguien hizo get en la ruta /ventas');
-  queryAllSales(genercCallback(res));
+  queryAllSales(generaCallback(res));
 });
 
 rutasVenta.route('/ventas').post((req, res) => {
-  crearVenta(req.body, genercCallback(res));
+  crearVenta(req.body, generaCallback(res));
 });
 
 rutasVenta.route('/ventas/:id').get((req, res) => {
   console.log('alguien hizo get en la ruta /ventas');
-  consultarVenta(req.params.id, genercCallback(res));
+  consultarVenta(req.params.id, generaCallback(res));
 });
 
 rutasVenta.route('/ventas/:id').patch((req, res) => {
-  editarVenta(req.params.id, req.body, genercCallback(res));
+  editarVenta(req.params.id, req.body, generaCallback(res));
 });
 
 rutasVenta.route('/ventas/:id').delete((req, res) => {
-  eliminarVenta(req.params.id, genercCallback(res));
+  eliminarVenta(req.params.id, generaCallback(res));
 });
 
 export default rutasVenta;
