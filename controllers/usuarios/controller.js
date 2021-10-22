@@ -4,7 +4,8 @@ import { getDB } from '../../db/db.js';
 const queryAllUsers = async (callback) => {
   const baseDeDatos = getDB();
   console.log('query');
-  await baseDeDatos.collection('usuarios').find({}).limit(50).toArray(callback);
+  // await baseDeDatos.collection('usuarios').find({}).limit(50).toArray(callback);
+  await baseDeDatos.collection('usuarios').find({}).toArray(callback);
 };
 
 const crearUsuario = async (datosUsuario, callback) => {
@@ -34,4 +35,15 @@ const eliminarUsuario = async (id, callback) => {
   await baseDeDatos.collection('usuarios').deleteOne(filtroUsuario, callback);
 };
 
-export { queryAllUsers, crearUsuario, consultarUsuario, editarUsuario, eliminarUsuario };
+const consultarVendedoresActivos = async (callback) => {
+  const baseDeDatos = getDB();
+  // await baseDeDatos.collection('usuarios').find({ rol: 'Vendedor', estado:'Autorizado'}, callback);
+  await baseDeDatos.collection('usuarios').find({ rol: 'Vendedor', estado:'Autorizado'}).toArray(callback);
+};
+
+const consultarVendedoresBloqueados = async (callback) => {
+    const baseDeDatos = getDB();
+    await baseDeDatos.collection('usuarios').find({ rol: 'Vendedor', estado:'No autorizado'}, callback);
+  };
+
+export { queryAllUsers, crearUsuario, consultarUsuario, editarUsuario, eliminarUsuario, consultarVendedoresActivos,consultarVendedoresBloqueados };

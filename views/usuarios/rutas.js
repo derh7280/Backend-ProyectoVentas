@@ -5,6 +5,8 @@ import {
   editarUsuario,
   eliminarUsuario,
   consultarUsuario,
+  consultarVendedoresActivos,
+  consultarVendedoresBloqueados,
 } from '../../controllers/usuarios/controller.js';
 
 const rutasUsuario = Express.Router();
@@ -37,6 +39,16 @@ rutasUsuario.route('/usuarios/:id').patch((req, res) => {
 
 rutasUsuario.route('/usuarios/:id').delete((req, res) => {
   eliminarUsuario(req.params.id, generaCallback(res));
+});
+
+rutasUsuario.route('/usuarios/vendedores/activos').get((req, res) => {
+  console.log('alguien hizo get en la ruta /usuarios/vendedores/activos');
+  consultarVendedoresActivos(generaCallback(res));
+});
+
+rutasUsuario.route('/usuarios/vendedores/activos').get((req, res) => {
+  console.log('alguien hizo get en la ruta /usuarios/vendedores/activos');
+  consultarVendedoresBloqueados(generaCallback(res));
 });
 
 export default rutasUsuario;
