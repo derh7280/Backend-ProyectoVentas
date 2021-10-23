@@ -47,7 +47,7 @@ rutasUsuario.route('/usuarios/vendedores/activos').get((req, res) => {
 });
 
 rutasUsuario.route('/usuarios/vendedores/activos').get((req, res) => {
-  console.log('alguien hizo get en la ruta /usuarios/vendedores/activos');
+  console.log('alguien hizo get en la ruta /usuarios/vendedores/bloqueados');
   consultarVendedoresBloqueados(generaCallback(res));
 });
 
