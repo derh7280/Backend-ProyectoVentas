@@ -36,11 +36,10 @@ var jwtCheck = jwt({
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
-app.use(rutasFuncionario)
+app.use(rutasFuncionario);
 
 const main = () => {
   return app.listen(PORT, () => {
-    console.log(process.env.path)
     console.log(`Servidor conectado en el puerto ${process.env.PORT}`);
   });
 };
