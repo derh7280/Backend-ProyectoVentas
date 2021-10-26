@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db.js';
+import jwt_decode from 'jwt-decode';
 
 const queryAllProducts = async (callback) => {
   const baseDeDatos = getDB();
@@ -13,8 +14,6 @@ const crearProducto = async (datosProducto, callback) => {
     Object.keys(datosProducto).includes('estado')
   ) {
     const baseDeDatos = getDB();
-    // implementar código para crear vehículo en la BD
-
     await baseDeDatos.collection('productos').insertOne(datosProducto, callback);
   } else {
     return 'error';

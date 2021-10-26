@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db.js';
+import jwt_decode from 'jwt-decode';
 
 const queryAllSales = async (callback) => {
   const baseDeDatos = getDB();

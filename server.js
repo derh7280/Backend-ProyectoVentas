@@ -24,14 +24,18 @@ var jwtCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: process.env.AO_JWKSURI,
+    jwksUri: process.env.A0_API_JWKSURI,
   }),
-  audience: process.env.AO_AUDIENCE,
-  issuer: process.env.AO_ISSUER,
-  algorithms:[process.env.AO_ALGORITHMS] ,
+  audience: process.env.A0_API_AUDIENCE,
+  issuer: process.env.AO_APP_ISSUER,
+  algorithms:[process.env.A0_API_ALGORITHMS] ,
 });
 
-//app.use(jwtCheck);
+// app.use(jwtCheck);
+
+app.get('/authorized', function (req, res) {
+  res.send('Secured Resource');
+});
 
 app.use(rutasProducto);
 app.use(rutasUsuario);
